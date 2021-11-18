@@ -1,0 +1,45 @@
+*{
+    background-color: #cde5d7;
+}
+h1{
+    background-color: #eec6ca;
+    display: inline;
+    font-weight: 700;
+    text-transform:uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: underline, wavy,plum;
+    position:absolute;
+}
+span{
+    background-color: pink;
+    border: 1px solid black;
+}
+form{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 30%;
+    padding-right: 30%;
+    background-color: #bcf4de;
+    text-align: center;
+}
+p{
+    text-align: center;
+
+}
+h2{
+    text-align: center;
+}
+.name_top{
+    background-color: #eec6ca;
+    border-color: #ded6d1;
+    border-radius: 25px;
+    border-style: ridge;
+    box-sizing: border-box;
+}
+div > label{
+font-family: 'Courier New', Courier, monospace;
+}
+
+button{
+    
+}

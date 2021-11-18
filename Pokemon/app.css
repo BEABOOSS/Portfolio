@@ -1,0 +1,13 @@
+.overtime {
+	font-weight: 900;
+	background-color: red !important;
+	color: white !important;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+select {
+  transition: all 0.5s;
+}
