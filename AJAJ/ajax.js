@@ -74,11 +74,35 @@ const addNewJoke = async () => {
 
 const getDadJoke = async () => {
     try {
-        const config  = { headers: { Accept: "application/json" } };
+        const config = { headers: { Accept: "application/json" } };
         const res = await axios.get("https://icanhazdadjoke.com/", config);
         return res.data.joke;
-    } catch(e) {
-        return"NO JOKES AVAILABLE!"
+    } catch (e) {
+        return "NO JOKES AVAILABLE!"
     }
-} 
+}
 button.addEventListener("click", addNewJoke)
+
+const form = document.querySelector("#researchForm");
+
+
+
+form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const userInput = form.elements.query.value;
+    const config = { params: { q: userInput} }
+    const respond = await axios.get(`https://api.tvmaze.com/search/shows`, config);
+    displayImage(respond.data);
+    form.elements.query.value ="";
+})
+
+const displayImage = (shows) => {
+    for (let result of shows) {
+        if (result.show.image) {
+            const img = document.createElement("IMG");
+            img.src = result.show.image.medium;
+            document.body.append(img);
+        }
+    }
+
+};
