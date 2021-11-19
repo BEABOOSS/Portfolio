@@ -3,7 +3,7 @@
 
 This Repo Is Really Only Made For Me I'll Decide Later If I Want To Make It Public.
 
-But basically each section each folder (ex. manipulating, scoreKeeper) are project that I did or codded along while 
+But basically each section and folder (ex. manipulating, scoreKeeper, etc...) are project that I did or codded along while 
 using this [course][course]. 
 
 My next project will be to complete this [challange][challenge] over the next few days to sharpen my coding skills.
