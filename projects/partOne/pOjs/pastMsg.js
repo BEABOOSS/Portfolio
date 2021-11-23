@@ -6,16 +6,17 @@ const elseValue = document.querySelector(".elseValue")
 
 
 
-form.addEventListener("submit", addMsg());
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+});
 
 
-const addMsg = (e) =>{
-    e.preventDefaulft();
+const addMsg = () => {
     const userIpt = formInput.value;
 
-    if (formInput.value === ""){
+    if (formInput.value === "") {
         output.classList.add("show")
-        setTimeout(function(){
+        setTimeout(function () {
             output.classList.remove("show")
         }, 2000)
     } else {
