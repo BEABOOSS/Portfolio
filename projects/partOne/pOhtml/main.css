@@ -15,11 +15,11 @@
   .message-content {
     color: var(--lightBlue);
   }
-  #submitBtn {
+  #btnSubmit {
     background: var(--lightBlue);
     color: var(--mainwhite);
   }
-  #submitBtn:hover {
+  #btnSubmit:hover {
     color: var(--lightBlue);
     color: var(--mainBlack);
   }

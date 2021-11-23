@@ -18,34 +18,15 @@
                 <div class="column is-half is-offset-one-quarter">
                     <form id="msg">
                         <div class="card-content">
-                            <div class="field-label is-medium">
-                                <label class="label">A Message You Would Like To Pass</label>
-                            </div>
-                            <div class="field is-horizontal">
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input" id="formInput" type="text"
-                                                placeholder="Normal sized input">
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="field message-container">
+                                <h4 class="label">A Message You Would Like To Pass</h4>
                             </div>
 
-                            <div class="field is-horizontal">
-                                <div class="field-label">
-                                    <!-- was left empty for spacing -->
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <button class="button is-info" id="btnSubmit">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <form>
+                                <input class="input" id="formInput" type="text" placeholder="Normal sized input">
+                                <input type="submit" id="btnSubmit">
+                            </form>
+
 
                             <h4 id="outPut">Last Message Delivered</h4>
                             <h4 class="feedback elseValue">Hello Wolrd</h4>
