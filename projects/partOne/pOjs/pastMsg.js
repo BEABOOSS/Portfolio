@@ -6,7 +6,7 @@ const elseValue = document.querySelector(".elseValue")
 
 
 
-btn.addEventListener("click", addMsg());
+form.addEventListener("submit", addMsg());
 
 
 const addMsg = (e) =>{
@@ -15,7 +15,7 @@ const addMsg = (e) =>{
 
     if (formInput.value === ""){
         output.classList.add("show")
-        setTimeout(fucniton(){
+        setTimeout(function(){
             output.classList.remove("show")
         }, 2000)
     } else {
