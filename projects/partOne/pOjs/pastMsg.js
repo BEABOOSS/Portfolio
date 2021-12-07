@@ -21,7 +21,7 @@ const addMsg = () => {
         }, 2000)
     } else {
         elseValue.textContent = formInput.value
-        formInput.vlaue = "";
+        formInput.vlaue = ""
     }
 
 }
