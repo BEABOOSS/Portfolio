@@ -8,10 +8,10 @@ doing this [course][course].
 
 Before going back to the [course][course] other half. I'll be doing a [challenge][challenge].
 My next project will be to complete this [challange][challenge] over the next few days to sharpen my coding skills.
+<br />
+<br />
 
-
-
-### Projects
+## Projects
  -  1 => 18 will be more towards using js functions in front-end.
  -  19 => 27 will include ajax, fully fledge website, etc.
  -  28 => 54 will be projects from [Bluelime's course][Bluelime].
