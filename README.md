@@ -1,7 +1,7 @@
 # ProtFolio
 
 
-This Repo Is Really Only Made For Me I'll Decide Later If I Want To Make It Public.
+~~This Repo Is Really Only Made For Me I'll Decide Later If I Want To Make It Public.~~
 
 But basically each section and folder (ex. manipulating, scoreKeeper, etc...) are project that I did or codded along while 
 doing this [course][course]. 
@@ -19,6 +19,7 @@ My next project will be to complete this [challange][challenge] over the next fe
  -  59 => 109 will be Laurence Sveki's [Monster JavaScript Course][laurence].
  -  110 => 139 will be [WesBos][js30].
  -  Then to imporove my [github][codeStackr] page.
+ -  Create your own discord theme.
  -  Create some sort of extension that allows you to use your arrows keys to changes chapters on websties like [Asurascans][asura].
 <br />
 <br />
