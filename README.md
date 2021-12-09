@@ -9,14 +9,17 @@ doing this [course][course].
 Before going back to the [course][course] other half. I'll be doing a [challenge][challenge].
 My next project will be to complete this [challange][challenge] over the next few days to sharpen my coding skills.
 
+
+
 ### Projects
- 1. 1 => 18 will be more towards using js functions in front-end.
- 2. 19 => 27 will include ajax, fully fledge website, etc.
- 3. 28 => 54 will be projects from [Bluelime's course][Bluelime].
- 4. 55 => 58 will be [Andrew Mead's][Andrew] projects .
- 5. 59 => 109 will be Laurence Sveki's [Monster JavaScript Course][laurence].
- 6. 110 => 139 will be [WesBos][js30].
- <!-- 7. then to imporove my [github][codeStackr] page. -->
+ -  1 => 18 will be more towards using js functions in front-end.
+ -  19 => 27 will include ajax, fully fledge website, etc.
+ -  28 => 54 will be projects from [Bluelime's course][Bluelime].
+ -  55 => 58 will be [Andrew Mead's][Andrew] projects .
+ -  59 => 109 will be Laurence Sveki's [Monster JavaScript Course][laurence].
+ -  110 => 139 will be [WesBos][js30].
+ -  Then to imporove my [github][codeStackr] page.
+ -  Create some sort of extension that allows you to use your arrows keys to changes chapters on websties like [Asurascans][asura].
 <br />
 <br />
 
@@ -27,3 +30,4 @@ My next project will be to complete this [challange][challenge] over the next fe
 [codeStackr]: https://www.youtube.com/watch?v=ECuqb5Tv9qI&ab_channel=codeSTACKr
 [laurence]:https://www.udemy.com/course/javascript-course-projects/?ranMID=39197&ranEAID=1SruzFLGpX8&ranSiteID=1SruzFLGpX8-3LMazqzQS47Uvpe5tQtjng&utm_source=aff-campaign&utm_medium=udemyads&LSNPUBID=1SruzFLGpX8
 [js30]:https://javascript30.com/
+[asura]:https://www.asurascans.com/
