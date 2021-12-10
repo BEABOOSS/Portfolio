@@ -1,10 +1,11 @@
-function hex (r,g,b){
-    return "#" + ((1<<24) + (r << 24) + (g<<8) + b).toString(16).slice(1);
-}
+// function hex (r,g,b){
+//     return "#" + ((1<<24) + (r << 24) + (g<<8) + b).toString(16).slice(1);
+// }
 
-function rgb(r,g,b){
-    return `rgb(${r}, ${g}, ${b})`
-}
+// function rgb(r,g,b){
+//     return `rgb(${r}, ${g}, ${b})`
+// }
+// 
 
 
 function makeColor(r,g,b){
