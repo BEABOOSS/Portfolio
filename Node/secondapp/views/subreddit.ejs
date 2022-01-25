@@ -1,0 +1,33 @@
+<%- include("partials/head")%>
+
+<%- include("partials/navbar")%>
+        <div class="container">
+            <!-- output Js data -->
+            <h1>Browsing The <%= name %> subreddit!!</h1>
+            <h2>
+                <%= description%>
+            </h2>
+            <p>
+                <%= subscribers %> Total Subscribers
+            </p>
+            <hr>
+
+
+            <!-- looping over the array of posts -->
+            <% for(let post of posts){ %>
+                <article>
+
+                    <!-- taking the title and author from the file  -->
+                    <p>
+                        <%= post.title %> - <b>
+                                <%= post.author %>
+                            </b>
+                    </p>
+                    <!-- checking if there is an image -->
+                    <% if(post.img){ %>
+                        <img src="<%= post.img %>" alt="">
+                        <% } %>
+                </article>
+                <% } %>
+        </div>
+<%- include("partials/footer")%>
