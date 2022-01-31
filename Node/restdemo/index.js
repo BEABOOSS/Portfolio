@@ -73,7 +73,7 @@ app.get("/comments/:id/edit", (req, res) => {
 
 // Taking the id from the URL -(first line)
 // Then taking what was sent in the body.comment -(second line)
-// then your finding a comment (with the same id) -(third line)
+// then you find a comment (with the same id) -(third line)
 // you then update that comment with what was sent from *(second line)* -(fourth line)
 app.patch("/comments/:id", (req, res) => {
     const { id } = req.params;
