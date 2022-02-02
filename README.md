@@ -3,24 +3,25 @@
 
 ~~This Repo Is Really Only Made For Me I'll Decide Later If I Want To Make It Public.~~
 
-But basically each section and folder (ex. manipulating, scoreKeeper, etc...) are project that I did or codded along while 
+Basically each section and folder (ex. manipulating, ...) are project that I did while learning web development by 
 doing this [course][course]. 
 
-Before going back to the [course][course] other half. I'll be doing a [challenge][challenge].
-My next project will be to complete this [challange][challenge] over the next few days to sharpen my coding skills.
 <br />
 <br />
 
 ## Projects
- -  1 => 18 will be more towards using js functions in front-end.
- -  19 => 27 will include ajax, fully fledge website, etc.
- -  28 => 54 will be projects from [Bluelime's course][Bluelime].
- -  55 => 58 will be [Andrew Mead's][Andrew] projects .
- -  59 => 109 will be Laurence Sveki's [Monster JavaScript Course][laurence].
- -  110 => 139 will be [WesBos][js30].
- -  Then to imporove my [github][codeStackr] page.
- -  Create your own discord theme.
+ <!-- -  Then to imporove my [github][codeStackr] page. -->
+ -  Create own discord theme. Like I find that I'm lacking in css generally.
  -  Create some sort of extension that allows you to use your arrows keys to changes chapters on websties like [Asurascans][asura].
+<br />
+<br />
+
+## Index
+- First app ==> First interaction with express.
+- Second app ==> Dynamic HTML and also templating. 
+- Rest demo ==> RESTfuk Routes ( get, post, ...).
+
+
 <br />
 <br />
 
