@@ -40,39 +40,44 @@ app.get("/campgrounds", catchAsync(async (req, res) => {
 app.get("/campgrounds/new", (req, res) => {
     res.render("campgrounds/new");
 })
-app.post("/campgrounds", catchAsync( async (req, res) => {
+app.post("/campgrounds", catchAsync(async (req, res) => {
     const campground = new Campground(req.body.campground);
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`);
 }))
 
 //* Showing campground by the id
-app.get("/campgrounds/:id", catchAsync( async (req, res) => {
-    const campground = catchAsync( await Campground.findById(req.params.id));
+app.get("/campgrounds/:id", catchAsync(async (req, res) => {
+    const campground = catchAsync(await Campground.findById(req.params.id));
     res.render("campgrounds/show", { campground });
 }))
 
 //* Updating
-app.get("/campgrounds/:id/edit", catchAsync( async (req, res) => {
+app.get("/campgrounds/:id/edit", catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     res.render("campgrounds/edit", { campground });
 }))
-app.put("/campgrounds/:id", catchAsync( async (req, res) => {
+app.put("/campgrounds/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
     res.redirect(`/campgrounds/${campground._id}`)
 }))
 // delete will need to be changed to have the rights to do so
-app.delete("/campgrounds/:id", catchAsync( async (req, res) => {
+app.delete("/campgrounds/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
     res.redirect("/campgrounds");
 }))
 
 
+app.all("*", (req, res, next) => {
+    next(new expressError(404, "Page Not Found"))
+})
+
 // error middleware
 app.use((err, req, res, next) => {
-    res.send("Ohh boii something went wrong");
+    const { statusCode = 500, message = "Something Went Wrong!" } = err;
+    res.status(statusCode).send(message);
 })
 
 app.listen(3000, () => {
