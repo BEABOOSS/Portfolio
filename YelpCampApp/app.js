@@ -1,13 +1,14 @@
 const expressError = require("./utils/expressError")
 const methodOverride = require("method-override");
 const Campground = require("./models/campground");
-const catchAsync = require("./utils/catchAsync")
+const catchAsync = require("./utils/catchAsync");
+const { campgroundSchema } = require("./schemas.js");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const express = require("express");
 const path = require("path");
-const joi = require("joi");
-const { join } = require("path");
+
+
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp');
 
@@ -28,7 +29,15 @@ app.set("view engine", "ejs");
 app.use(methodOverride("_method"))
 app.use(express.urlencoded({ extended: true }));
 
-
+const validateCampground = (req, res, next) => {
+    const { error } = campgroundSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(",")
+        throw new expressError(400, msg)
+    } else {
+        next();
+    }
+};
 
 
 //* ROUTES //* CRUD --->> order matter when putting your routes
@@ -36,36 +45,23 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/campgrounds", catchAsync(async (req, res) => {
     const campgrounds = await Campground.find({});
     res.render("campgrounds/index", { campgrounds })
-}))
+}));
 
 // making new campgrounds
 app.get("/campgrounds/new", (req, res) => {
     res.render("campgrounds/new");
 })
-app.post("/campgrounds", catchAsync(async (req, res) => {
-    // if (!req.body.campground) throw new expressError(404, "Invalid Campground Data");
-    const campgroundSchema = joi.object({
-        campground: joi.object({
-            title: joi.string().required(),
-            price: joi.number().required().min(0),
-            image: joi.string().required,
-            location: joi.string().required(),
-            description: joi.string().required()
-        }).required()
-    })
-    const { error } = campgroundSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(",")
-        throw new expressError(400, msg)
-    }
+
+app.post("/campgrounds", validateCampground, catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground);
     await campground.save();
-    res.redirect(`/campgrounds/${campground._id}`);
+    res.redirect(`/campgrounds/${campground._id}`)
 }))
+
 
 //* Showing campground by the id
 app.get("/campgrounds/:id", catchAsync(async (req, res) => {
-    const campground = catchAsync(await Campground.findById(req.params.id));
+    const campground = await Campground.findById(req.params.id);
     res.render("campgrounds/show", { campground });
 }))
 
@@ -73,18 +69,19 @@ app.get("/campgrounds/:id", catchAsync(async (req, res) => {
 app.get("/campgrounds/:id/edit", catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     res.render("campgrounds/edit", { campground });
-}))
-app.put("/campgrounds/:id", catchAsync(async (req, res) => {
+}));
+app.put("/campgrounds/:id", validateCampground, catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
     res.redirect(`/campgrounds/${campground._id}`)
-}))
+}));
+
 // delete will need to be changed to have the rights to do so
 app.delete("/campgrounds/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
     res.redirect("/campgrounds");
-}))
+}));
 
 // error middleware
 
@@ -95,8 +92,7 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = "Ohh No, Something Went Wrong!!!";
-    res.status(statusCode)
-        .render("./error", { err });
+    res.status(statusCode).render("error", { err });
 })
 
 app.listen(3000, () => {
