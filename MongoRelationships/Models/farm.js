@@ -24,7 +24,7 @@ const farmSchema = new Schema({
     name: String,
     city: String,
     products: [{ type: Schema.Types.ObjectId, ref: "Product" }]
-});
+})
 
 
 
@@ -38,13 +38,20 @@ const Farm = mongoose.model("Farm", farmSchema);
 // ])
 
 
-const makeFarm = async () => {
-    const farm = new Farm({ name: "Full Belly Farm", city: "Guinda, CA" });
-    const melon = await Product.findOne({name: "Goddess Melon"});
-    farm.products.push(melon);
+// const makeFarm = async () => {
+//     const farm = new Farm({ name: "Full Belly Farm", city: "Guinda, CA" });
+//     const melon = await Product.findOne({name: "Goddess Melon"});
+//     farm.products.push(melon);
+//     await farm.save();
+//     console.log(farm);
+// }
+// makeFarm();
+
+const addProduct = async () => {
+    const farm = new Farm({ name: "Full belly Farms" });
+    const watermelon = await Product.findOne({ name: "Sugar Baby Watermelon" });
+    farm.products.push(watermelon);
     await farm.save();
     console.log(farm);
 }
-
-
-makeFarm();
+addProduct();
