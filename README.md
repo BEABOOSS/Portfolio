@@ -13,7 +13,7 @@ doing this [course][course].
  <!-- -  Then to imporove my [github][codeStackr] page. -->
  -  *** IMPORTANT WEB SCRAPPER DOWNLOAD .PNG *** 
  -  Create own discord theme. Like I find that I'm lacking in css generally.
- -  Create some sort of extension that allows you to use your arrows keys to changes chapters on websties like [Asurascans][asura].
+ -  Create some sort of extension that allows you to use your arrows keys to changes chapters on websites like [Asurascans][asura].
 <br />
 <br />
 
