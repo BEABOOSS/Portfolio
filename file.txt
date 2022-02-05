@@ -27,15 +27,16 @@ puis apres tu peux avoir plusieur biblio qui ont chacun leur objectif
 
 
 Medical Tech Parts => MTP;
-Recycling 2-3* + (+20%) = R;
+Recycling 2-4 (times per item) = R;
 Tech Scrap = TS;
 Net Revenue = NR
 
 YOU CAN BUY MTP for => 
       $480/MTP => R => TS can sell ($500)
-ex   :   50*2 (+20%) =>  ~120 TS
-C/SP :      $24k          $60k 
-NR   :             $36K
+ex   :   50  (+20%) =>  ~ 60 TS
+C/SP :      $24k          $30k 
+NR   :           + $6K
 
 
+cache R = 3x AVG
 

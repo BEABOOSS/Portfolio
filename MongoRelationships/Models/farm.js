@@ -31,6 +31,10 @@ const farmSchema = new Schema({
 const Product = mongoose.model("Product", productSchema);
 const Farm = mongoose.model("Farm", farmSchema);
 
+
+//* ===========
+//* ONE TO FEW 
+//* ===========
 // Product.insertMany([
 //     {name: "Goddess Melon", price: 4.99, season: "summer"},
 //     {name: "Sugar Baby Watermelon", price: 4.99, season: "summer"},
@@ -38,13 +42,18 @@ const Farm = mongoose.model("Farm", farmSchema);
 // ])
 
 
-// const makeFarm = async () => {
-//     const farm = new Farm({ name: "Full Belly Farm", city: "Guinda, CA" });
-//     const melon = await Product.findOne({name: "Goddess Melon"});
-//     farm.products.push(melon);
-//     await farm.save();
-//     console.log(farm);
-// }
+
+//* ============
+//* ONE TO MANY
+//* ============
+
+const makeFarm = async () => {
+    const farm = new Farm({ name: "Full Belly Farm", city: "Guinda, CA" });
+    const melon = await Product.findOne({name: "Goddess Melon"});
+    farm.products.push(melon);
+    await farm.save();
+    console.log(farm);
+}
 // makeFarm();
 
 const addProduct = async () => {
@@ -55,3 +64,15 @@ const addProduct = async () => {
     console.log(farm);
 }
 addProduct();
+
+
+Farm.findOne({name: "Full Belly Farms"})
+.populate("products")
+.then( farm => console.log(farm));
+ 
+
+//* ====================
+//* ONE TO "BAJILLIONS"
+//* ====================
+
+// IS IN "./tweet.js" 
