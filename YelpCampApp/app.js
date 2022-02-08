@@ -3,6 +3,7 @@ const methodOverride = require("method-override");
 const Campground = require("./models/campground");
 const catchAsync = require("./utils/catchAsync");
 const { campgroundSchema } = require("./schemas.js");
+const Review = require("./models/review");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const express = require("express");
@@ -41,6 +42,9 @@ const validateCampground = (req, res, next) => {
 
 
 //* ROUTES //* CRUD --->> order matter when putting your routes
+app.get('/', (req, res) => {
+    res.render('home')
+});
 
 app.get("/campgrounds", catchAsync(async (req, res) => {
     const campgrounds = await Campground.find({});
@@ -83,8 +87,22 @@ app.delete("/campgrounds/:id", catchAsync(async (req, res) => {
     res.redirect("/campgrounds");
 }));
 
-// error middleware
 
+//
+app.post("/campgrounds/:id/reviews", catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.body.review);
+    campground.reviews.push(review);
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
+}))
+
+
+
+//* ==================
+//*  error middleware
+//* ==================
 app.all("*", (req, res, next) => {
     next(new expressError(404, "Page Not Found"))
 })
