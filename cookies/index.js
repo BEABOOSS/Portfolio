@@ -6,7 +6,7 @@ const express = require("express");
 const app = express();
 
 
-app.use(cookieParser());
+app.use(cookieParser("thisismysecret"));
 app.use("/shelters", shleterRoutes);
 app.use("/dogs", dogsRoutes);
 app.use("/admin", adminRoutes);
@@ -16,14 +16,20 @@ app.use("/admin", adminRoutes);
 
 
 app.get("/greet", (req, res) => {
-    const {name = "noname"} = req.cookies;
-    res.send(`Hey There,${name}`)
+    const { name = "noname" } = req.cookies;
+    res.send(`Hey There, ${name}`);
 })
 app.get("/setname", (req, res) => {
-    res.cookie("name", "stevie chicks")
-    res.send("OK SENT YOU A COOKIE!!!!!!")
+    res.cookie("name", "stevie chicks");
+    res.send("OK SENT YOU A COOKIE!!!!!!");
 })
-
+app.get("/getsignedcookie", (req, res) => {
+    res.cookie("fruit", "grape", { signed: true });
+    res.send("OK SIGNED YOUR COOKIE");
+})
+app.get("/verifyfruit", (req, res) => {
+    res.send(req.signedCookies);
+})
 
 
 
