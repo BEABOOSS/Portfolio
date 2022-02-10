@@ -10,7 +10,6 @@ const app = express();
 
 
 
-
 mongoose.connect('mongodb://localhost:27017/yelp-camp');
 
 // checks if there is an error 
@@ -28,12 +27,18 @@ app.set("view engine", "ejs");
 
 app.use(methodOverride("_method"))
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"))
 
 
 
 // IMPORTING ROUTES 
-app.use("/camgrounds", campgrounds);
-app.use("/camgrounds/:id/rebiews", reviews);
+app.use("/campgrounds", campgrounds);
+app.use("/campgrounds/:id/reviews", reviews);
+
+
+
+
+
 
 //* ROUTES //* CRUD --->> order matter when putting your routes
 app.get('/', (req, res) => {

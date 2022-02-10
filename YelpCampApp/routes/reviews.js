@@ -1,12 +1,12 @@
-const { reviewSchema } = require("../schemas/schemas.js");
+const { reviewSchema } = require("../joi/schemas.js");
 const expressError = require("../utils/expressError");
 const Campground = require("../models/campground");
 const catchAsync = require("../utils/catchAsync");
-const Review = require("./models/review");
+const Review = require("../models/review");
 const express = require("express");
-const router = express.Router();
 
 
+const router = express.Router({ mergeParams: true });
 
 
 

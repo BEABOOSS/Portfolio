@@ -1,10 +1,11 @@
-const { campgroundSchema } = require("../schemas/schemas.js");
+const { campgroundSchema } = require("../joi/schemas.js");
 const expressError = require("../utils/expressError");
 const Campground = require("../models/campground");
 const catchAsync = require("../utils/catchAsync");
 const express = require("express");
-const router = express.Router();
 
+
+const router = express.Router();
 
 
 const validateCampground = (req, res, next) => {
