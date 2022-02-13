@@ -21,7 +21,7 @@ doing this [course][course].
 - First app ==> First interaction with express.
 - Second app ==> Dynamic HTML and also templating. 
 - Rest demo ==> RESTfuk Routes ( get, post, ...).
-https://4anime.gg/watch/that-time-i-got-reincarnated-as-a-slime-429?ep=9297
+
 
 <br />
 <br />
