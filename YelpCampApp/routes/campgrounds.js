@@ -1,18 +1,18 @@
-const { campgroundSchema } = require("../joi/schemas.js");
-const expressError = require("../utils/expressError");
-const Campground = require("../models/campground");
-const catchAsync = require("../utils/catchAsync");
 const express = require("express");
+const router = express.Router({ mergeParams: true });
+const catchAsync = require("../utils/catchAsync");
 
+const { campgroundSchema } = require("../schemas.js");
 
-const router = express.Router();
+const ExpressError = require("../utils/ExpressError");
+const Campground = require("../models/campground");
 
 
 const validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(",")
-        throw new expressError(400, msg)
+        throw new ExpressError(msg, 400)
     } else {
         next();
     }
@@ -33,6 +33,7 @@ router.get("/new", (req, res) => {
 router.post("/", validateCampground, catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground);
     await campground.save();
+    req, flash("success", "Successffully made a new campground!");
     res.redirect(`/campgrounds/${campground._id}`)
 }))
 
