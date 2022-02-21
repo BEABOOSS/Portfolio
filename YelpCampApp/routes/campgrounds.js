@@ -1,7 +1,6 @@
 const express = require("express");
-const router = express.Router({ mergeParams: true });
+const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
-
 const { campgroundSchema } = require("../schemas.js");
 
 const ExpressError = require("../utils/ExpressError");
@@ -33,7 +32,7 @@ router.get("/new", (req, res) => {
 router.post("/", validateCampground, catchAsync(async (req, res, next) => {
     const campground = new Campground(req.body.campground);
     await campground.save();
-    req, flash("success", "Successffully made a new campground!");
+    req.flash("success", "Successfully made a new campground!");
     res.redirect(`/campgrounds/${campground._id}`)
 }))
 
@@ -52,13 +51,15 @@ router.get("/:id/edit", catchAsync(async (req, res) => {
 router.put("/:id", validateCampground, catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
-    res.redirect(`/campgrounds/${campground._id}`)
+    req.flash("success", "Successfully updated campground");
+    res.redirect(`/campgrounds/${campground._id}`);
 }));
 
 // delete will need to be changed to have the rights to do so
 router.delete("/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
+    req.flash("success", "Successfully deleted campground")
     res.redirect("/campgrounds");
 }));
 
