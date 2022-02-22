@@ -35,6 +35,7 @@ app.post("/register", async (req, res) => {
     const hash = await bcrypt.hash(password, 12);
     const user = new User({ username, password: hash });
     await user.save();
+    req.session.user_id = user._id;
     res.redirect("/");
 });
 
@@ -48,17 +49,24 @@ app.post("/login", async (req, res) => {
     const user = await User.findOne({ username });
     const validePassword = await bcrypt.compare(password, user.password);
     if (validePassword) {
-        
-        res.send("YAY WELCOME");
+        req.session.user_id = user._id;
+        res.redirect("/secret");
     } else {
-        res.send("TRY AGAIN!");
+        res.redirect("/login");
 
     }
+});
+
+app.post("/logout", (req, res) => {
+    req.session.user_id = null;
+    res.redirect("/login");
 })
 
-
 app.get("/secret", (req, res) => {
-    res.send("THIS IS SECRET, YOU CANNOT SEE ME UNLESS TOU ARE LOG IN!!!")
+    if(!req.session.user_id){
+        return res.redirect("/login");
+    }
+    res.render("secret");
 });
 
 
