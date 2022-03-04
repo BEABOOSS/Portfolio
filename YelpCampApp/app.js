@@ -38,7 +38,7 @@ app.set("views", path.join(__dirname, "/views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"))
-app.use(express.static(path.join(__dirname, "/public")))
+app.use(express.static(path.join(__dirname, "public")))
 
 const sessionConfig = {
     secret: "thisshouldbeabettersecret!",
@@ -60,7 +60,7 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser ());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     console.log(req.session);
@@ -69,15 +69,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     next();
 })
-
-
-
-app.get("/fakeUser", async (req, res)  => {
-    const user = new User({email: "warrenlestum@gmail.com", username: "BEEBS"})
-    const newUser = await User.register(user, "monkey");
-    res.send(newUser); 
-})
-
 
 // IMPORTING ROUTES 
 app.use("/", userRoutes);

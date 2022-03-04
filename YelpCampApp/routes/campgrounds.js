@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
-const { isLoggedIn, isAuthor, validateCampground } = require("../middleware.js");
+const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 
 
 const Campground = require("../models/campground");
@@ -32,7 +32,12 @@ router.post("/", isLoggedIn, validateCampground, catchAsync(async (req, res, nex
 
 //* Showing campground by the id
 router.get("/:id", catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate("reviews").populate("author");
+    const campground = await Campground.findById(req.params.id).populate({
+        path: "reviews",
+        populate: {
+            path: "author"
+        }
+    }).populate("author");
     if (!campground) {
         req.flash("error", "Campground not found!");
         return res.redirect("/campgrounds");
@@ -42,9 +47,10 @@ router.get("/:id", catchAsync(async (req, res) => {
 
 //* Updating
 router.get("/:id/edit", isLoggedIn, isAuthor, catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
+    const { id } = req.params;
+    const campground = await Campground.findById(id);
     if (!campground) {
-        req.flash("error", "I Don't Know! I Didn't Find That One. Recheck If You Entered The Right Thing.");
+        req.flash("error", "I Don't Know! I Didn't Find That One.");
         return res.redirect("/campgrounds");
     }
     res.render("campgrounds/edit", { campground });
