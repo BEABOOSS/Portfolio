@@ -30,6 +30,7 @@ router.post("/", isLoggedIn, validateCampground, catchAsync(async (req, res, nex
 }))
 
 
+
 //* Showing campground by the id
 router.get("/:id", catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id).populate({
