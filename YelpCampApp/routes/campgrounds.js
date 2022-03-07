@@ -5,16 +5,14 @@ const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 const campgrounds = require("../controllers/campgrounds");
 const multer = require("multer");
 const { storage } = require("../cloudinary");
+const { array } = require("joi");
 const upload = multer({ storage });
 
 
 
 router.route("/")
     .get(catchAsync(campgrounds.index))
-    // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground))
-    .post(upload.array("image"), (req, res) => {
-        console.log(req.body, req.files);
-    })
+    .post(isLoggedIn, upload.array("image"), validateCampground, catchAsync(campgrounds.createCampground))
 
 //-------- IMPORTANT--------     
 // must put the new route before the show page or else it thinks that new is an ID
