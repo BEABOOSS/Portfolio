@@ -8,7 +8,7 @@ const { storage } = require("../cloudinary");
 const { array } = require("joi");
 const upload = multer({ storage });
 
-
+const Campground = require("../models/campground");
 
 router.route("/")
     .get(catchAsync(campgrounds.index))
