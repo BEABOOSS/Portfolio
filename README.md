@@ -10,7 +10,7 @@ doing this [course][course].
 <br />
 
 ## Projects
- <!-- -  Then to imporove my [github][codeStackr] page. -->
+ <!-- -  Then to improve my [github][codeStackr] page. -->
  -  *** IMPORTANT WEB SCRAPPER DOWNLOAD .PNG *** 
  -  Create own discord theme. Like I find that I'm lacking in css generally.
  -  Create some sort of extension that allows you to use your arrows keys to changes chapters on websites like [Asurascans][asura].
@@ -20,7 +20,7 @@ doing this [course][course].
 ## Index
 - First app ==> First interaction with express.
 - Second app ==> Dynamic HTML and also templating. 
-- Rest demo ==> RESTfuk Routes ( get, post, ...).
+- Rest demo ==> RESTfull Routes ( get, post, ...).
 
 
 <br />
