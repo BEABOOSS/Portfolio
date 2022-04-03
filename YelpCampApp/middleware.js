@@ -2,6 +2,7 @@ const { campgroundSchema, reviewSchema } = require("./schemas");
 const ExpressError = require("./utils/ExpressError");
 const Campground = require("./models/campground");
 const Review = require("./models/review");
+const user = require("./models/user");
 
 module.exports.isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {
@@ -54,3 +55,4 @@ module.exports.validateReview = (req, res, next) => {
 		next();
 	}
 };
+
