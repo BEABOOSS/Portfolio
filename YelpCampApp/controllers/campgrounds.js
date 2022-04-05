@@ -4,9 +4,23 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 
-module.exports.index = async (req, res) => {
-	const campgrounds = await Campground.find({});
-	res.render("campgrounds/index", { campgrounds });
+module.exports.index = async (req, res, next) => {
+	const perPage = 15;
+	const page = req.params.page || 1;
+	Campground
+		.find({})
+		.skip(perPage * page - perPage)
+		.limit(perPage)
+		.exec(function (err, campgrounds) {
+			Campground.count().exec(function (err, count) {
+				if (err) return next(err);
+				res.render("campgrounds/index", {
+					campgrounds: campgrounds,
+					current: page,
+					pages: Math.ceil(count / perPage),
+				});
+			});
+		});
 };
 
 module.exports.renderNewForm = (req, res) => {
@@ -17,15 +31,15 @@ module.exports.createCampground = async (req, res, next) => {
 	const geoData = await geocoder
 		.forwardGeocode({
 			query: req.body.campground.location,
-			limit: 1
+			limit: 1,
 		})
 		.send();
 	const campground = new Campground(req.body.campground);
-    campground.geometry = geoData.body.features[0].geometry;
+	campground.geometry = geoData.body.features[0].geometry;
 	campground.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
 	campground.author = req.user._id;
 	await campground.save();
-    console.log(campground);
+	console.log(campground);
 	req.flash("success", "Successfully made a new campground!");
 	res.redirect(`/campgrounds/${campground._id}`);
 };
@@ -78,3 +92,22 @@ module.exports.deleteCampground = async (req, res) => {
 	req.flash("success", "Successfully deleted campground");
 	res.redirect("/campgrounds");
 };
+
+// module.exports.pagination = (req, res, next) => {
+// 	const perPage = 15;
+// 	const page = req.params.page || 1;
+
+// 	Campground.find({})
+// 		.skip(perPage * page - perPage)
+// 		.limit(perPage)
+// 		.exec(function (err, products) {
+// 			Campground.count().exec(function (err, count) {
+// 				if (err) return next(err);
+// 				res.render("main/products", {
+// 					products,
+// 					current: page,
+// 					page: Math.ceil(count / perPage),
+// 				});
+// 			});
+// 		});
+// };

@@ -10,9 +10,8 @@ const upload = multer({ storage });
 
 const Campground = require("../models/campground");
 
-router.route("/")
-    .get(catchAsync(campgrounds.index))
-    .post(isLoggedIn, upload.array("image"), validateCampground, catchAsync(campgrounds.createCampground))
+router.post(("/"), isLoggedIn, upload.array("image"), validateCampground, catchAsync(campgrounds.createCampground))
+router.get(("/:page"), catchAsync(campgrounds.index))
 
 //-------- IMPORTANT--------     
 // must put the new route before the show page or else it thinks that new is an ID
